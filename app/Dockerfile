@@ -1,13 +1,15 @@
-FROM openjdk:11 as build
+FROM openjdk:12-alpine as build
 WORKDIR /workspace/v1/users
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
 
-COPY /users/mvnw .
-COPY /users/.mvn .mvn
-COPY /users/pom.xml .
-COPY /users/src src
+RUN ls
+RUN ls
 
-RUN chmod +x ./mvnw
-RUN ./mvnw install -DskipTests
+RUN chmod +x mvnw
+RUN  ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:11
