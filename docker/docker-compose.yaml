@@ -10,10 +10,7 @@ services:
       - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8082
       - PROFILE=dev
     links:
-      - discovery-server
       - db-v1-users
-    depends_on:
-      - discovery-server
   db-v1-users:
     image: mongo
     container_name: "db-v1-users"
