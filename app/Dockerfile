@@ -1,9 +1,9 @@
 FROM openjdk:12-alpine as build
 WORKDIR /workspace/v1/users
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-COPY src src
+COPY /app/mvnw .
+COPY /app/.mvn .mvn
+COPY /app/pom.xml .
+COPY /app/src src
 
 RUN chmod +x mvnw
 RUN  ./mvnw install -DskipTests
